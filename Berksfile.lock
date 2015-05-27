@@ -1,0 +1,7 @@
+DEPENDENCIES
+  influxdb
+    path: .
+    metadata: true
+
+GRAPH
+  influxdb (0.1.0)
