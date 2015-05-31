@@ -1,0 +1,8 @@
+#!/bin/bash
+nodes=$(aws ec2 describe-instances --filters '<%= @tags.map { |k,v| "Name=tag:#{k},Values=#{v}" } %>' --query 'Reservations[*].Instances[*].<%= @address_type %>' --output text)
+myip=$(ec2-metadata --<%= @address_type %>-ip)
+join=${nodes//$myip} # remove myip from nodes
+if [[ $join != "" ]]; then
+    join="-join $(echo $join | sed 's/\n/ /g')"
+fi
+exec /opt/influxdb/influxd -config <% @config_file %> $join

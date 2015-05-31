@@ -1,4 +1,4 @@
-# ElasticSearch upstart script
+# InfluxDB upstart script
 
 description "InfluxDB service"
 
@@ -16,4 +16,8 @@ limit nofile 32000 32000
 setuid influxdb
 setgid influxdb
 
+<% if @ec2 %>
+exec /opt/influxdb/influxd-ec2
+<% else %>
 exec /opt/influxdb/influxd -config /etc/opt/influxdb/influxdb.conf
+<% end %>

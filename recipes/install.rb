@@ -12,6 +12,6 @@ end
 
 remote_file tmp_path do
   source url
-  notifies :install, 'dpkg_package[influxdb]'
+  notifies :install, 'dpkg_package[influxdb]', :immediately
   not_if 'dpkg -s influxdb'
 end

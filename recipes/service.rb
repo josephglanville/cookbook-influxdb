@@ -9,4 +9,6 @@ file '/etc/init.d/influxdb' do
   notifies :run, 'execute[disable-influxdb]'
 end
 
-cookbook_file '/etc/init/influxdb.conf'
+template '/etc/init/influxdb.conf' do
+  variables ec2: node['influxdb'].attribute?('ec2')
+end
