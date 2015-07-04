@@ -10,6 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # VMWare Fusion and VirtualBox support
   config.vm.box = 'petejkim/trusty64'
   config.omnibus.chef_version = :latest
+  config.cache.scope = :box if Vagrant.has_plugin?('vagrant-cachier')
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ['modifyvm', :id, '--memory', NODE_MEM]
