@@ -1,5 +1,5 @@
-default['influxdb']['repo'] = 'http://get.influxdb.org'
-default['influxdb']['version'] = '0.9.0-rc30'
+default['influxdb']['repo'] = 'http://influxdb.s3.amazonaws.com'
+default['influxdb']['version'] = '0.9.1'
 default['influxdb']['arch'] = 'amd64'
 
 # default['influxdb']['ec2']['address_type'] = 'private' # Private or Public addressing
