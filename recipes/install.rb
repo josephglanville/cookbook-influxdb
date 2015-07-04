@@ -15,3 +15,7 @@ remote_file tmp_path do
   notifies :install, 'dpkg_package[influxdb]', :immediately
   not_if 'dpkg -s influxdb'
 end
+
+link '/usr/bin/influx' do
+  to '/opt/influxdb/influx'
+end

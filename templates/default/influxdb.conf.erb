@@ -13,8 +13,8 @@ respawn limit 10 30
 
 limit nofile 32000 32000
 
-setuid influxdb
-setgid influxdb
+setuid <%= node['influxdb']['user'] %>
+setgid <%= node['influxdb']['group'] %>
 
 <% if @ec2 %>
 exec /opt/influxdb/influxd-ec2

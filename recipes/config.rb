@@ -1,3 +1,28 @@
+group node['influxdb']['group'] do
+  system true
+end
+
+user node['influxdb']['user'] do
+  gid node['influxdb']['group']
+  home '/var/lib/influxdb'
+  manage_home true
+  system true
+end
+
+directory '/var/lib/influxdb' do
+  owner node['influxdb']['user']
+  group node['influxdb']['group']
+  mode 0770
+end
+
+%w(meta data hh).each do |dir|
+  directory dir do
+    owner node['influxdb']['user']
+    group node['influxdb']['group']
+    mode 0770
+  end
+end
+
 chef_gem 'toml' do
   action :install
   compile_time true
